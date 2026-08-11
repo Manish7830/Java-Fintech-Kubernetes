@@ -16,11 +16,12 @@ spec:
     spec:
       topologySpreadConstraints:
         - maxSkew: 1
-          topologeKey: kubernetes.io/hostname
+          topologyKey: kubernetes.io/hostname
           whenUnsatisfiable: ScheduleAnyway
           labelSelector:
             matchLabels:
-            app: backend
+             app: backend
+
       containers:
         - name: backend
           image: manish7830/java-banking-backend:1.1
@@ -46,21 +47,21 @@ spec:
               value: "86400000"
             - name: CORS_ALLOWED_ORIGIN
               value: "*"
+
           resources:
             requests:
-              memory: "256Mi"
               cpu: "200m"
+              memory: "256Mi"
             limits:
-              memory: "512Mi"
               cpu: "1000m"
+              memory: "512Mi"
+
           readinessProbe:
             httpGet: 
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 400
-            periodSeconds: 10
-            timeouteSeconds: 3
+            initialDelaySeconds: 40
+            periodSeconds: 10  
+            timeoutSeconds: 3
             failureThreshold: 3
-            successThreshold: 1  
-
-      
+            successThreshold: 1
