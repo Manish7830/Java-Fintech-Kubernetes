@@ -103,5 +103,5 @@ async def main():
     print(f"Total duration: {result['total_duration_seconds']} s")
 
 
-if name == "main":
+if __name__ == "__main__":
     asyncio.run(main())
